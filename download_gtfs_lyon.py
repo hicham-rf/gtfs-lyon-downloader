@@ -3,17 +3,6 @@ import hashlib
 import os
 from datetime import datetime
 
-import os, datetime
-
-logfile = r"C:\Users\hicham\Desktop\planif_log.txt"
-with open(logfile, "a", encoding="utf-8") as f:
-    f.write(f"\n\n=== Lancement à {datetime.datetime.now()} ===\n")
-    f.write(f"Répertoire courant : {os.getcwd()}\n")
-    f.write(f"Utilisateur : {os.getlogin()}\n")
-    f.write(f"Python : {os.__file__}\n")
-
-
-
 # --- Configuration ---
 URL_GTFS = "https://download.data.grandlyon.com/files/rdata/tcl_sytral.tcltheorique/GTFS_TCL.ZIP"
 USER = "hichambelafquih@gmail.com"        # 🔒 ton identifiant GrandLyon

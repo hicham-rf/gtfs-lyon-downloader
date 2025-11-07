@@ -12,6 +12,8 @@ on:
 
 jobs:
   download-and-commit:
+    permissions: 
+      contents: write
     # Utilise la dernière version d'Ubuntu comme machine virtuelle
     runs-on: ubuntu-latest
 

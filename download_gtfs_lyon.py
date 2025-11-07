@@ -7,7 +7,7 @@ from datetime import datetime
 URL_GTFS = "https://download.data.grandlyon.com/files/rdata/tcl_sytral.tcltheorique/GTFS_TCL.ZIP"
 USER = "hichambelafquih@gmail.com"        # 🔒 ton identifiant GrandLyon
 PASSWORD = "BAB@Maths123"         # 🔒 ton mot de passe
-DOSSIER_GTFS = r"C:\Users\hicham\Desktop\datasytral\gtfs_lyon"
+DOSSIER_GTFS = "gtfs_data"
 FICHIER_HASH = "last_hash.txt"
 
 # --- Création du dossier si besoin ---

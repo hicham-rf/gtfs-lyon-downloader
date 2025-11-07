@@ -37,7 +37,7 @@ jobs:
           # Passe les secrets GitHub à votre script
           GRANDLYON_USER: ${{ secrets.GRANDLYON_USER }}
           GRANDLYON_PASSWORD: ${{ secrets.GRANDLYON_PASSWORD }}
-        run: python download_gtfs.py
+        run: python download_gtfs_lyon.py
 
       # 5. Fait un "commit" et "push" automatique si des fichiers ont changé
       - name: 💾 Sauvegarder les nouveaux fichiers

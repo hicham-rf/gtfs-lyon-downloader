@@ -1,0 +1,49 @@
+# Nom de votre workflow, visible dans l'onglet "Actions"
+name: 🚀 Vérification quotidienne GTFS Lyon
+
+on:
+  # Permet de lancer ce workflow manuellement depuis l'interface GitHub
+  workflow_dispatch:
+
+  # Déclenche le workflow tous les jours à 5h00 UTC
+  # (C'est 6h00 à Paris en hiver, 7h00 en été)
+  schedule:
+    - cron: '0 5 * * *' 
+
+jobs:
+  download-and-commit:
+    # Utilise la dernière version d'Ubuntu comme machine virtuelle
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupère le code de votre dépôt (pour avoir le script .py et l'ancien hash)
+      - name: ⬇️ Récupérer le code
+        uses: actions/checkout@v4
+
+      # 2. Configure l'environnement Python
+      - name: 🐍 Configurer Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip' # Met en cache les dépendances
+
+      # 3. Installe les dépendances Python (le 'requests')
+      - name: 📦 Installer les dépendances
+        run: pip install -r requirements.txt
+
+      # 4. Exécute votre script Python
+      - name: 🏃 Exécuter le script de téléchargement
+        env:
+          # Passe les secrets GitHub à votre script
+          GRANDLYON_USER: ${{ secrets.GRANDLYON_USER }}
+          GRANDLYON_PASSWORD: ${{ secrets.GRANDLYON_PASSWORD }}
+        run: python download_gtfs.py
+
+      # 5. Fait un "commit" et "push" automatique si des fichiers ont changé
+      - name: 💾 Sauvegarder les nouveaux fichiers
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 CI: Mise à jour automatique des données GTFS"
+          commit_user_name: "GitHub Actions Bot"
+          commit_user_email: "actions@github.com"
+          commit_author: "GitHub Actions Bot <actions@github.com>"

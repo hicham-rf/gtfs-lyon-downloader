@@ -5,8 +5,8 @@ from datetime import datetime
 
 # --- Configuration ---
 URL_GTFS = "https://download.data.grandlyon.com/files/rdata/tcl_sytral.tcltheorique/GTFS_TCL.ZIP"
-USER = "hichambelafquih@gmail.com"        # 🔒 ton identifiant GrandLyon
-PASSWORD = "BAB@Maths123"         # 🔒 ton mot de passe
+USER = "hichambelafquih@gmail.com"       
+PASSWORD = "BAB@Maths123"         
 DOSSIER_GTFS = "gtfs_data"
 FICHIER_HASH = "last_hash.txt"
 
@@ -14,10 +14,10 @@ FICHIER_HASH = "last_hash.txt"
 os.makedirs(DOSSIER_GTFS, exist_ok=True)
 
 # --- Téléchargement authentifié ---
-print("🔐 Connexion au portail Grand Lyon...")
+print("Connexion au portail Grand Lyon...")
 resp = requests.get(URL_GTFS, auth=(USER, PASSWORD))
 if resp.status_code == 401:
-    raise Exception("❌ Erreur d'authentification : vérifie ton identifiant ou mot de passe.")
+    raise Exception("Erreur d'authentification : vérifie ton identifiant ou mot de passe.")
 resp.raise_for_status()
 
 data = resp.content
@@ -41,6 +41,6 @@ if new_hash != old_hash:
     with open(FICHIER_HASH, "w") as f:
         f.write(new_hash)
 
-    print(f"📦 GTFS sauvegardé sous {filename}")
+    print(f"GTFS sauvegardé sous {filename}")
 else:
-    print("⚠️ Aucun changement détecté, rien à faire.")
+    print("Aucun changement détecté, rien à faire.")

@@ -1,12 +1,11 @@
 # Nom de votre workflow, visible dans l'onglet "Actions"
-name: 🚀 Vérification quotidienne GTFS Lyon
+name: Vérification quotidienne GTFS Lyon
 
 on:
   # Permet de lancer ce workflow manuellement depuis l'interface GitHub
   workflow_dispatch:
 
   # Déclenche le workflow tous les jours à 5h00 UTC
-  # (C'est 6h00 à Paris en hiver, 7h00 en été)
   schedule:
     - cron: '0 5 * * *' 
 
@@ -30,11 +29,11 @@ jobs:
           cache: 'pip' # Met en cache les dépendances
 
       # 3. Installe les dépendances Python (le 'requests')
-      - name: 📦 Installer les dépendances
+      - name: Installer les dépendances
         run: pip install -r requirements.txt
 
       # 4. Exécute votre script Python
-      - name: 🏃 Exécuter le script de téléchargement
+      - name: Exécuter le script de téléchargement
         env:
           # Passe les secrets GitHub à votre script
           GRANDLYON_USER: ${{ secrets.GRANDLYON_USER }}
